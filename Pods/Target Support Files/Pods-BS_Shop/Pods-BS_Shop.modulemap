@@ -1,0 +1,6 @@
+framework module Pods_BS_Shop {
+  umbrella header "Pods-BS_Shop-umbrella.h"
+
+  export *
+  module * { export * }
+}
