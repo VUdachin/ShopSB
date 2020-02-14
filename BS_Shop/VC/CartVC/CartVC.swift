@@ -66,9 +66,19 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
         cell.cartCostLabel.text = "Стоимость: \(prod.productPrice.replacingOccurrences(of: ".0000", with: "₽"))"
         cell.cartSizeLabel.text = "Размер: \(prod.productSize)"
         
-        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let prod = addedProducts[indexPath.row]
+            
+            try! self.realm.write {
+                self.realm.delete(prod)
+            }
+            
+            mainCartTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
     
 }
