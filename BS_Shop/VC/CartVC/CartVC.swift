@@ -32,6 +32,10 @@ class CartVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        mainCartTableView.reloadData()
+    }
+    
     @IBAction func order(_ sender: Any) {
         
         try! self.realm.write {

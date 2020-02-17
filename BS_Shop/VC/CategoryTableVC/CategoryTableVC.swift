@@ -14,9 +14,11 @@ class CategoryTableVC: UITableViewController {
 
     var selectedSubcategories: [Subcategory] = []
     
+    let networkManager = NetworkManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingCategory()
+        loadingData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -30,32 +32,19 @@ class CategoryTableVC: UITableViewController {
         }
     }
     
-    
-    
-    func loadingCategory() {
-        guard let url = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/categories") else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+    private func loadingData() {
+        networkManager.loadingCategory { (cat) in
             
-            guard let data = data else { return }
+            self.loadedCategories = cat as! [CategoryValue]
             
-            do{
-                let categories = try? JSONDecoder().decode(Category.self, from: data)
-                
-                for v in categories!.values {
-                    self.loadedCategories.append(v)
-                }
-                
-                self.loadedCategories.sort { (elem1, elem2) -> Bool in
-                return elem1.sortOrder < elem2.sortOrder
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print(error)
+            self.loadedCategories.sort { (elem1, elem2) -> Bool in
+            return elem1.sortOrder < elem2.sortOrder
             }
-        }.resume()
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     

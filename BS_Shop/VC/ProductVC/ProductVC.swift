@@ -20,10 +20,11 @@ class ProductVC: UIViewController {
     
     var selectedProduct: ProductValue?
     
+    let networkManager = NetworkManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadingProduct()
+        loadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -31,31 +32,13 @@ class ProductVC: UIViewController {
             vc.cartProd = selectedProduct
         }
     }
-    
-    func loadingProduct() {
-        guard let url = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/products&cat_id=\(subCategoryId)") else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            
-            do {
-                
-                let productJSON = try! JSONDecoder().decode(Product.self, from: data)
-                
-                DispatchQueue.main.async {
-                    if productJSON == nil {
-                        print("tut pusto")
-                    } else {
-                        for v in productJSON.values {
-                            self.products.append(v)
-                        }
-                    }
-                    self.productCV.reloadData()
-                }
-                
-            } catch {
-                print(error)
+    private func loadData() {
+        networkManager.loadingProduct(id: subCategoryId) { (prod) in
+            self.products = prod as! [ProductValue]
+            DispatchQueue.main.async {
+                self.productCV.reloadData()
             }
-        }.resume()
+        }
     }
 }
     
