@@ -18,8 +18,6 @@ class CartVC: UIViewController {
     @IBOutlet weak var allCartCostLabel: UILabel!
     @IBOutlet weak var allCartProductsLabel: UILabel!
     
-    
-    
     var addedProducts: Results<CartProduct> {
         get {
             return realm.objects(CartProduct.self)
@@ -28,6 +26,7 @@ class CartVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        allCartProductsLabel.text = "Количество товаров: \(addedProducts.count)"
         mainCartTableView.reloadData()
         
     }
