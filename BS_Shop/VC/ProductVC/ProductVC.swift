@@ -21,6 +21,7 @@ class ProductVC: UIViewController {
     var selectedProduct: ProductValue?
     
     let networkManager = NetworkManager()
+    let jsonParser = JSONParser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +34,32 @@ class ProductVC: UIViewController {
         }
     }
     private func loadData() {
-        networkManager.loadingProduct(id: subCategoryId) { (prod) in
-            self.products = prod as! [ProductValue]
-            DispatchQueue.main.async {
-                self.productCV.reloadData()
+        jsonParser.downloadData(of: Product.self, from: URL(string: "\(productURL + subCategoryId)")!) { (result) in
+            switch result {
+            case .failure(let error):
+                if error is DataError {
+                    print(error)
+                } else {
+                    print(error.localizedDescription)
+                }
+                print(error.localizedDescription)
+                
+            case .success(let result):
+                DispatchQueue.main.async {
+                    var prod: [ProductValue] = []
+                    
+                    if result == nil {
+                        print("tut pusto")
+                    } else {
+                        for v in result.values {
+                            prod.append(v)
+                        }
+                    }
+                    
+                    self.products = prod
+                
+                    self.productCV.reloadData()
+                }
             }
         }
     }

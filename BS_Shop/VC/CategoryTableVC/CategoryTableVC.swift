@@ -14,7 +14,7 @@ class CategoryTableVC: UITableViewController {
 
     var selectedSubcategories: [Subcategory] = []
     
-    let networkManager = NetworkManager()
+    let jsonParser = JSONParser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,20 +33,34 @@ class CategoryTableVC: UITableViewController {
     }
     
     private func loadingData() {
-        networkManager.loadingCategory { (cat) in
-            
-            self.loadedCategories = cat as! [CategoryValue]
-            
-            self.loadedCategories.sort { (elem1, elem2) -> Bool in
-            return elem1.sortOrder < elem2.sortOrder
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        
+        jsonParser.downloadData(of: Category.self, from: categoryURL!) { (result) in
+            switch result {
+            case .failure(let error):
+                if error is DataError {
+                    print(error)
+                } else {
+                    print(error.localizedDescription)
+                }
+                print(error.localizedDescription)
+                
+            case .success(let result):
+                DispatchQueue.main.async {
+                    var categories: [CategoryValue] = []
+                    for v in result.values {
+                        categories.append(v)
+                    }
+                    
+                    self.loadedCategories = categories
+                    
+                    self.loadedCategories.sort { (elem1, elem2) -> Bool in
+                    return elem1.sortOrder < elem2.sortOrder
+                    }
+                    self.tableView.reloadData()
+                }
             }
         }
     }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -8,58 +8,47 @@
 
 import Foundation
 
-class NetworkManager {
+let categoryURL = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/categories")
+let productURL = "https://blackstarshop.ru/index.php?route=api/v1/products&cat_id="
+
+enum DataError: Error {
+    case invalidResponse
+    case invalidData
+    case decodingError
+    case serverError
+}
+
+class JSONParser {
     
+    typealias result<T> = (Result<T, Error>) -> Void
     
-    func loadingCategory(completion: @escaping ([Any]) -> Void) {
-        guard let url = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/categories") else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+    func downloadData<T: Decodable>(of type: T.Type, from url: URL, completion: @escaping result<T>) {
         
-            guard let data = data else { return }
-            
-            if error == nil {
-                guard let categories = try? JSONDecoder().decode(Category.self, from: data) else { return }
-                var cat: [Any] = []
-                for v in categories.values {
-                    cat.append(v)
-                }
-                completion(cat)
-                
-            }
-            
-        }.resume()
-    }
-    
-    func loadingProduct(id: String, completion: @escaping ([Any]) -> Void) {
-        guard let url = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/products&cat_id=\(id)") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            guard let data = data else { return }
-            
-            if error == nil {
-                let productJSON = try! JSONDecoder().decode(Product.self, from: data)
-                var prod: [Any] = []
-                
-                DispatchQueue.main.async {
-                    if productJSON == nil {
-                        print("tut pusto")
-                    } else {
-                        for v in productJSON.values {
-                            prod.append(v)
-                        }
-                        completion(prod)
-                    }
-                }
-                
-                
-                
+            if let error = error {
+                completion(.failure(error))
             }
             
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(DataError.invalidResponse))
+                return
+            }
             
-            
+            if 200 ... 299 ~= response.statusCode {
+                if let data = data {
+                    do {
+                        let decodedData: T = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(decodedData))
+                    }
+                    catch {
+                        completion(.failure(DataError.decodingError))
+                    }
+                } else {
+                    completion(.failure(DataError.invalidData))
+                }
+            } else {
+                completion(.failure(DataError.serverError))
+            }
         }.resume()
     }
-    
-    
-    
 }

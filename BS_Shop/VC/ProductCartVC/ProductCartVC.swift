@@ -16,14 +16,14 @@ class ProductCartVC: UIViewController {
     
     @IBOutlet weak var cartCV: UICollectionView!
 
-    @IBOutlet weak var priceCartLabel: UILabel!
-    @IBOutlet weak var nameCartLabel: UILabel!
-    @IBOutlet weak var colorLabel: UILabel!
+    @IBOutlet private weak var priceCartLabel: UILabel!
+    @IBOutlet private weak var nameCartLabel: UILabel!
+    @IBOutlet private weak var colorLabel: UILabel!
     
-    @IBOutlet weak var sizeButton: UIButton!
-    @IBOutlet weak var addToBucketButton: UIButton!
+    @IBOutlet private weak var sizeButton: UIButton!
+    @IBOutlet private weak var addToBucketButton: UIButton!
     
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var descriptionTextView: UITextView!
     
     var cartProd: ProductValue?
     

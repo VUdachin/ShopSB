@@ -15,8 +15,8 @@ class CartVC: UIViewController {
     
     @IBOutlet weak var mainCartTableView: UITableView!
     
-    @IBOutlet weak var allCartCostLabel: UILabel!
-    @IBOutlet weak var allCartProductsLabel: UILabel!
+    @IBOutlet private weak var allCartCostLabel: UILabel!
+    @IBOutlet private weak var allCartProductsLabel: UILabel!
     
     var addedProducts: Results<CartProduct> {
         get {
