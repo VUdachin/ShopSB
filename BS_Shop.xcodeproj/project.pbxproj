@@ -28,6 +28,7 @@
 		B17E0F0323E44D4700347FC6 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E0F0223E44D4700347FC6 /* CategoryCell.swift */; };
 		B17E0F0723E479FA00347FC6 /* SubCategoryTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E0F0623E479FA00347FC6 /* SubCategoryTableVC.swift */; };
 		B17E0F0923E47B3400347FC6 /* SubCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E0F0823E47B3400347FC6 /* SubCategoryCell.swift */; };
+		B1E7C196240BF61300E326C7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7C195240BF61300E326C7 /* Extensions.swift */; };
 		B1F218E223E5D4DD002A2C23 /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F218E123E5D4DD002A2C23 /* ProductVC.swift */; };
 		B1F218E623E5D5FB002A2C23 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F218E523E5D5FB002A2C23 /* ProductCell.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		B17E0F0223E44D4700347FC6 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B17E0F0623E479FA00347FC6 /* SubCategoryTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryTableVC.swift; sourceTree = "<group>"; };
 		B17E0F0823E47B3400347FC6 /* SubCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryCell.swift; sourceTree = "<group>"; };
+		B1E7C195240BF61300E326C7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B1F218E123E5D4DD002A2C23 /* ProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
 		B1F218E523E5D5FB002A2C23 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		BA406FFBA16BBF1D977629CC /* Pods-BS_Shop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BS_Shop.release.xcconfig"; path = "Target Support Files/Pods-BS_Shop/Pods-BS_Shop.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				B17E0EEA23E4472E00347FC6 /* AppDelegate.swift */,
 				B17E0EEC23E4472E00347FC6 /* SceneDelegate.swift */,
 				B16DF08E23FA718400D14AF7 /* NetworkManager.swift */,
+				B1E7C195240BF61300E326C7 /* Extensions.swift */,
 				B17E0F0023E44CED00347FC6 /* VC */,
 				B11CF48523E80795009C7733 /* Model */,
 				B139628D23F55FEC00CE6280 /* Data */,
@@ -356,6 +359,7 @@
 				B139628F23F560DC00CE6280 /* CartData.swift in Sources */,
 				B1F218E223E5D4DD002A2C23 /* ProductVC.swift in Sources */,
 				B17E0EEF23E4472E00347FC6 /* CategoryTableVC.swift in Sources */,
+				B1E7C196240BF61300E326C7 /* Extensions.swift in Sources */,
 				B14BCF9223ED4A6500C5BC32 /* ProductCartVC.swift in Sources */,
 				B17E0EEB23E4472E00347FC6 /* AppDelegate.swift in Sources */,
 				B14BCF9423ED4AA100C5BC32 /* ProductCartCell.swift in Sources */,

@@ -43,8 +43,7 @@ class SubCategoryTableVC: UITableViewController {
         
         cell.subCategoryLabel.text = subcategory.name
         
-        let imageUrl = URL(string: "https://blackstarshop.ru/\(subcategory.iconImage)")
-        cell.subCategoryIconImageView.image = UIImage(data: try! Data(contentsOf: imageUrl!))
+        cell.subCategoryIconImageView.downloadFrom(imageUrl: mainURL + subcategory.iconImage)
 
         return cell
     }

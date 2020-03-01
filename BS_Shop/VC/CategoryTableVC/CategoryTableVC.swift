@@ -76,8 +76,7 @@ class CategoryTableVC: UITableViewController {
 
         cell.categoryNameLabel.text = category.name
         
-        let imageUrl = URL(string: "https://blackstarshop.ru/\(category.iconImage)")
-        cell.iconImageView.image = UIImage(data: try! Data(contentsOf: imageUrl!))
+        cell.iconImageView.downloadFrom(imageUrl: mainURL + category.iconImage)
         
         return cell
     }

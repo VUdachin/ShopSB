@@ -60,10 +60,7 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartTableVCell
         let prod = addedProducts[indexPath.row]
         
-        DispatchQueue.main.async {
-            let imageUrl = URL(string: "https://blackstarshop.ru/\(prod.productImage)")
-            cell.cartImageView.image = UIImage(data: try! Data(contentsOf: imageUrl!))
-        }
+        cell.cartImageView.downloadFrom(imageUrl: mainURL + prod.productImage)
         
         cell.cartNameLabel.text = prod.productName
         cell.cartCostLabel.text = "Стоимость: \(prod.productPrice.replacingOccurrences(of: ".0000", with: "₽"))"

@@ -20,7 +20,6 @@ class ProductVC: UIViewController {
     
     var selectedProduct: ProductValue?
     
-    let networkManager = NetworkManager()
     let jsonParser = JSONParser()
     
     override func viewDidLoad() {
@@ -84,8 +83,7 @@ class ProductVC: UIViewController {
             } else {
                 let product = products[indexPath.item]
                 
-                let imageUrl = URL(string: "https://blackstarshop.ru/\(product.mainImage!)")
-                cell.productImageView.image = UIImage(data: try! Data(contentsOf: imageUrl!))
+                cell.productImageView.downloadFrom(imageUrl: mainURL + product.mainImage!)
                 
                 cell.priceLabel.text = product.price!.replacingOccurrences(of: ".0000", with: "₽")
                 if product.oldPrice != nil {

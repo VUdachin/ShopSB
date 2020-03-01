@@ -8,6 +8,7 @@
 
 import Foundation
 
+let mainURL = "https://blackstarshop.ru/"
 let categoryURL = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/categories")
 let productURL = "https://blackstarshop.ru/index.php?route=api/v1/products&cat_id="
 
