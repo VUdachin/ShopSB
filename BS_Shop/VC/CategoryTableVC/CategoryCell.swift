@@ -25,4 +25,10 @@ class CategoryCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(content: CategoryValue) {
+        categoryNameLabel.text = content.name
+        iconImageView.downloadFrom(imageUrl: mainURL + content.iconImage)
+        
+    }
+    
 }

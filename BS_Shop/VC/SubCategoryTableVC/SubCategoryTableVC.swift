@@ -40,11 +40,7 @@ class SubCategoryTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubCategoryCell", for: indexPath) as! SubCategoryCell
         let subcategory = loadedSubCategories[indexPath.row]
-        
-        cell.subCategoryLabel.text = subcategory.name
-        
-        cell.subCategoryIconImageView.downloadFrom(imageUrl: mainURL + subcategory.iconImage)
-
+        cell.configureCell(content: subcategory)
         return cell
     }
 

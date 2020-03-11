@@ -12,5 +12,8 @@ class ProductCartCell: UICollectionViewCell {
     
     @IBOutlet weak var cartImageView: UIImageView!
     
-    
+    func configureCell(content: String) {
+        cartImageView.downloadFrom(imageUrl: mainURL + content)
+    }
+
 }

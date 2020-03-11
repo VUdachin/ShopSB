@@ -59,13 +59,7 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartTableVCell
         let prod = addedProducts[indexPath.row]
-        
-        cell.cartImageView.downloadFrom(imageUrl: mainURL + prod.productImage)
-        
-        cell.cartNameLabel.text = prod.productName
-        cell.cartCostLabel.text = "Стоимость: \(prod.productPrice.replacingOccurrences(of: ".0000", with: "₽"))"
-        cell.cartSizeLabel.text = "Размер: \(prod.productSize)"
-        
+        cell.configureCell(content: prod)
         return cell
     }
     

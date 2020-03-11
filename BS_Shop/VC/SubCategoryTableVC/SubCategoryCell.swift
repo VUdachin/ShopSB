@@ -24,4 +24,9 @@ class SubCategoryCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(content: Subcategory) {
+        subCategoryLabel.text = content.name
+        subCategoryIconImageView.downloadFrom(imageUrl: mainURL + content.iconImage)
+        
+    }
 }

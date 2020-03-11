@@ -32,9 +32,7 @@ extension SizeVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "changeSizeCell", for: indexPath) as! SizeTableVCell
-        
-        cell.sizeLabel.text = sizes[indexPath.row].size
-        
+        cell.configureCell(content: sizes[indexPath.row])
         return cell
     }
     

@@ -24,4 +24,7 @@ class SizeTableVCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(content: Offer) {
+        sizeLabel.text = content.size
+    }
 }

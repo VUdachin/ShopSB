@@ -82,18 +82,7 @@ class ProductVC: UIViewController {
                 return cell
             } else {
                 let product = products[indexPath.item]
-                
-                cell.productImageView.downloadFrom(imageUrl: mainURL + product.mainImage!)
-                
-                cell.priceLabel.text = product.price!.replacingOccurrences(of: ".0000", with: "₽")
-                if product.oldPrice != nil {
-                    cell.oldPriceLabel.text = "Старая цена: \(product.oldPrice!.replacingOccurrences(of: ".0000", with: "₽"))"
-                } else {
-                    cell.oldPriceLabel.text = product.oldPrice
-                }
-                
-                cell.productNameLabel.text = product.name
-                
+                cell.configureCell(content: product)
                 return cell
             }
         }

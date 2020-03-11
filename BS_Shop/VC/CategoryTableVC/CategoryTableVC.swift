@@ -73,11 +73,7 @@ class CategoryTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
         let category = loadedCategories[indexPath.row]
-
-        cell.categoryNameLabel.text = category.name
-        
-        cell.iconImageView.downloadFrom(imageUrl: mainURL + category.iconImage)
-        
+        cell.configureCell(content: category)
         return cell
     }
     

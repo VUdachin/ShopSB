@@ -101,9 +101,7 @@ extension ProductCartVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = cartCV.dequeueReusableCell(withReuseIdentifier: "ProductCartCell", for: indexPath) as! ProductCartCell
-        
-        cell.cartImageView.downloadFrom(imageUrl: mainURL + imageArr[indexPath.row])
-        
+        cell.configureCell(content: imageArr[indexPath.item])
         return cell
     }
     
